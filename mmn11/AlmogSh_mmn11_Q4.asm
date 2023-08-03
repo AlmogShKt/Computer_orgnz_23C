@@ -13,13 +13,13 @@ j main
 is_valid_input:
     li $t2, 0 			# Initialize array index to 0
     li $t4, 0 			# Initialize character counter to 0
-    li $t5, 0 
+    li $t5, 0 			# Initialize counter string to 0
     li $t8, 0 			# Initialize pair counter for output
     la $a3, 0($a0) 		# Load the input string address
 
 	
     loop:
-        add $t5, $t2, $a3
+        add $t5, $t2, $a3 	# Add the current index to the base address to get the current string position
         lb $a0, 0($t5) 		# load the next char into a0
         addi $t4, $t4, 1 	# add 1 to char counter
         beq $a0, 0x0a, end_is_valid_input # check if we reached to the end of the string, if so skip the loop
@@ -105,8 +105,8 @@ print:
 
 # convert OCTA(base 8) number to decimal number #
 convert:
-	la $t0, stringocta      # t0 points to the input string array
-	la $t1, NUM             # t0 points to the input string array
+	la $t0, stringocta      # t0 points to the input string array named stringocta
+	la $t1, NUM             # t0 points to the input string array named NUM
 	
    	add $t2, $v0, $zero # t2 stores number of pairs
 
